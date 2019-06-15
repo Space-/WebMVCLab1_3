@@ -2,6 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebMVCLab1_3.Models;
@@ -13,9 +14,10 @@ namespace WebMVCLab1_3.Controllers
         private NorthwindMvc db = new NorthwindMvc();
 
         // GET: api/Products
-        public IQueryable<Product> GetProducts()
+        public HttpResponseMessage GetProducts()
         {
-            return db.Products;
+            var response = Request.CreateResponse(HttpStatusCode.Created, "Hi");
+            return response;
         }
 
         // GET: api/Products/5
