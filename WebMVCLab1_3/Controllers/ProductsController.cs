@@ -66,6 +66,52 @@ namespace WebMVCLab1_3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // PUT: api/Products/5
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PatchProduct(int id, Product patchData)
+        {
+            // must be deleted
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // must be deleted
+            if (id != patchData.ProductID)
+            {
+                return BadRequest();
+            }
+
+            // update product name
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            product.ProductName = patchData.ProductName;
+            db.Entry(product).State = EntityState.Modified;
+            //////
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
         // POST: api/Products
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct(Product product)

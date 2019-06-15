@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 
+// 要特別注意這邊的 namespace !!!
 namespace WebMVCLab1_3.Models
 {
     using System.Collections.Generic;
