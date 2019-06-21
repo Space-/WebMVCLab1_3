@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -48,6 +49,70 @@ namespace WebMVCLab1_3.Controllers
             }
 
             db.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // topic: Homework2-PATCH實務需求-WebMVCLab1_3 project.md
+        // case1: http://localhost:65411/api/products/65/2
+        // case2: http://localhost:65411/api/products/65/3,4,5
+        [Route("~/api/products/{id:int}/{categories}")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PatchProduct(int id, [FromUri] string categories, Product patchData)
+        {
+            var categoryIds = categories.Split(',');
+            // [FromUri]
+
+            // must be deleted
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // must be deleted
+            if (id != patchData.ProductID)
+            {
+                return BadRequest();
+            }
+
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return BadRequest();
+            }
+
+            // update product contents
+            if (Array.Exists(categoryIds, i => i == "2"))
+            {
+                product.ProductName = patchData.ProductName;
+            }
+            else if (Array.Exists(categoryIds, i => i == "3")
+            && Array.Exists(categoryIds, i => i == "4")
+            && Array.Exists(categoryIds, i => i == "5"))
+            {
+                product.UnitPrice = patchData.UnitPrice;
+                product.UnitsInStock = patchData.UnitsInStock;
+                product.UnitsOnOrder = patchData.UnitsOnOrder;
+            }
+
+            db.Entry(product).State = EntityState.Modified;
+            //////
 
             try
             {
