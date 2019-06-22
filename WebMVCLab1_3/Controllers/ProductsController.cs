@@ -17,7 +17,14 @@ namespace WebMVCLab1_3.Controllers
         // GET: api/Products
         public HttpResponseMessage GetProducts()
         {
-            var response = Request.CreateResponse(HttpStatusCode.OK, "Hi");
+            var response = Request.CreateResponse(HttpStatusCode.OK, db.Products);
+            return response;
+        }
+
+        // GET: api/Products/xxx
+        public HttpResponseMessage GetProducts(string msg)
+        {
+            var response = Request.CreateResponse(HttpStatusCode.OK, msg);
             return response;
         }
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
+using System.Text;
 using WebMVCLab1_3.Models;
 
 namespace WebMVCLab1_3.Formatter
@@ -14,6 +15,8 @@ namespace WebMVCLab1_3.Formatter
         public ProductCsvFormatter()
         {
             SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/csv"));
+            SupportedEncodings.Add(new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+            SupportedEncodings.Add(Encoding.GetEncoding("iso-8859-1"));
         }
 
         public override bool CanReadType(Type type)
@@ -36,6 +39,7 @@ namespace WebMVCLab1_3.Formatter
 
         public override void WriteToStream(Type type, object value, Stream writeStream, HttpContent content)
         {
+            Encoding effectiveEncoding = SelectCharacterEncoding(content.Headers);
             using (var writer = new StreamWriter(writeStream))
             {
                 // 集合
