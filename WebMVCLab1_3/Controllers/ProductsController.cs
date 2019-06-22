@@ -97,17 +97,26 @@ namespace WebMVCLab1_3.Controllers
                 return BadRequest();
             }
 
+            // get all properties in Product
+            foreach (var property in product.GetType().GetProperties())
+            {
+            }
+
             // update product contents
             if (Array.Exists(categoryIds, i => i == "2"))
             {
                 product.ProductName = patchData.ProductName;
             }
-            else if (Array.Exists(categoryIds, i => i == "3")
-            && Array.Exists(categoryIds, i => i == "4")
-            && Array.Exists(categoryIds, i => i == "5"))
+            else if (Array.Exists(categoryIds, i => i == "3"))
             {
                 product.UnitPrice = patchData.UnitPrice;
+            }
+            else if (Array.Exists(categoryIds, i => i == "4"))
+            {
                 product.UnitsInStock = patchData.UnitsInStock;
+            }
+            else if (Array.Exists(categoryIds, i => i == "5"))
+            {
                 product.UnitsOnOrder = patchData.UnitsOnOrder;
             }
 
