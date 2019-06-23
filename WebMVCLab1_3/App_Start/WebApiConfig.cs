@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using WebMVCLab1_3.Formatter;
+using WebAPILab1_3.Formatter;
 
-namespace WebMVCLab1_3
+namespace WebAPILab1_3
 {
     public static class WebApiConfig
     {

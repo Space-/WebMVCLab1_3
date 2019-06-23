@@ -1,6 +1,6 @@
 using System;
 
-namespace WebMVCLab1_3.Areas.HelpPage.ModelDescriptions
+namespace WebAPILab1_3.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.
