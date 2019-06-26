@@ -4,8 +4,10 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
 using WebMVCLab1_3.Models;
 
 namespace WebMVCLab1_3.Controllers
@@ -128,7 +130,6 @@ namespace WebMVCLab1_3.Controllers
             }
 
             db.Entry(product).State = EntityState.Modified;
-            //////
 
             try
             {
@@ -149,8 +150,10 @@ namespace WebMVCLab1_3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // PUT: api/Products/5
-        [ResponseType(typeof(void))]
+        // topic: Homework2-PATCH實務需求-WebMVCLab1_3 project.md
+        // case1: http://localhost:65411/api/products/5?ProductName= ....
+        // Patch: api/Products/5?ProductName= ....
+        [ResponseType(typeof(Product))]
         public IHttpActionResult PatchProduct(int id, Product patchData)
         {
             // must be deleted
@@ -165,16 +168,26 @@ namespace WebMVCLab1_3.Controllers
                 return BadRequest();
             }
 
-            // update product name
+            // find matched product by product id
             Product product = db.Products.Find(id);
             if (product == null)
             {
                 return BadRequest();
             }
 
-            product.ProductName = patchData.ProductName;
+            // Patch data
+            var patchProperties = patchData.GetType().GetProperties().Where(p => p.GetValue(patchData) != null);
+            foreach (var newProperty in patchProperties)
+            {
+                var propertyInfo = product.GetType().GetProperty(newProperty.Name);
+
+                if (propertyInfo != null)
+                {
+                    propertyInfo.SetValue(product, newProperty.GetValue(patchData));
+                }
+            }
+
             db.Entry(product).State = EntityState.Modified;
-            //////
 
             try
             {
@@ -192,7 +205,9 @@ namespace WebMVCLab1_3.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(product);
+            //            return Ok("Patch success!");
+            //            return StatusCode(HttpStatusCode.OK);
         }
 
         // POST: api/Products
