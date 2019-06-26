@@ -1,4 +1,4 @@
-namespace WebMVCLab1_3.Models
+namespace WebAPILab1_3.Models
 {
     using System;
     using System.Collections.Generic;

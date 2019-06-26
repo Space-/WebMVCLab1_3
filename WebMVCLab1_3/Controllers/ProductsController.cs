@@ -6,9 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebMVCLab1_3.Models;
+using WebAPILab1_3.Models;
 
-namespace WebMVCLab1_3.Controllers
+namespace WebAPILab1_3.Controllers
 {
     public class ProductsController : ApiController
     {
@@ -76,7 +76,7 @@ namespace WebMVCLab1_3.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // topic: Homework2-PATCH實務需求-WebMVCLab1_3 project.md
+        // topic: Homework2-PATCH實務需求-WebAPILab1_3 project.md
         // case1: http://localhost:65411/api/products/65/2
         // case2: http://localhost:65411/api/products/65/3,4,5
         [Route("~/api/products/{id:int}/{categories}")]

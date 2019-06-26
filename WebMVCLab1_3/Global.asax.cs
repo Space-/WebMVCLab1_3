@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Routing;
 
-namespace WebMVCLab1_3
+namespace WebAPILab1_3
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

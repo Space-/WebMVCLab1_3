@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using WebMVCLab1_3.Areas.HelpPage.ModelDescriptions;
-using WebMVCLab1_3.Areas.HelpPage.Models;
+using WebAPILab1_3.Areas.HelpPage.ModelDescriptions;
+using WebAPILab1_3.Areas.HelpPage.Models;
 
-namespace WebMVCLab1_3.Areas.HelpPage
+namespace WebAPILab1_3.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {
@@ -282,7 +282,7 @@ namespace WebMVCLab1_3.Areas.HelpPage
                     //     public int Y { get; set; }
                     // }
                     // Class Point is bindable with a TypeConverter, so Point will be added to UriParameters collection.
-                    // 
+                    //
                     // public class Point
                     // {
                     //     public int X { get; set; }

@@ -1,4 +1,4 @@
-namespace WebMVCLab1_3.Areas.HelpPage
+namespace WebAPILab1_3.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

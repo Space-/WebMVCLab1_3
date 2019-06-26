@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="WebMVCLab1_3.WebApiApplication" Language="C#" %>
+﻿<%@ Application CodeBehind="Global.asax.cs" Inherits="WebAPILab1_3.WebApiApplication" Language="C#" %>

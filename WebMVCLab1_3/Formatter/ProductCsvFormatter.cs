@@ -6,9 +6,9 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
-using WebMVCLab1_3.Models;
+using WebAPILab1_3.Models;
 
-namespace WebMVCLab1_3.Formatter
+namespace WebAPILab1_3.Formatter
 {
     public class ProductCsvFormatter : BufferedMediaTypeFormatter
     {

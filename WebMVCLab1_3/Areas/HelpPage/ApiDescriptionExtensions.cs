@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace WebMVCLab1_3.Areas.HelpPage
+namespace WebAPILab1_3.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {
