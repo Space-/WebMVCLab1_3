@@ -4,10 +4,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Description;
-using System.Web.Http.Results;
 using WebMVCLab1_3.Models;
 
 namespace WebMVCLab1_3.Controllers
