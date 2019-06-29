@@ -27,20 +27,20 @@ namespace WebAPILab1_3.Controllers.Tests
         [TestMethod()]
         public void GetProductsByIdTestCase2()
         {
-            //            // arrange
-            //            var expected = 1;
-            //
-            //            var client = new RestClient("http://localhost:65411/api/products/1");
-            //            var request = new RestRequest(Method.GET);
-            //            request.AddHeader("postman-token", "350c30d9-33dc-2a75-e6ca-824fecdd599d");
-            //            request.AddHeader("cache-control", "no-cache");
-            //
-            //            // act
-            //            // Execute<T> 執自動進行反序列化
-            //            var response = client.Execute<Product>(request);
-            //            // assert
-            //            //            response.Data. < --自己點點看，強型別才有辦法驗證
-            //            Assert.AreEqual(expected, response.Data.ProductID);
+            // arrange
+            var expected = 1;
+
+            var client = new RestClient("http://localhost:65411/api/products/1");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("Postman-Token", "22fb5a4c-da97-431b-a3b0-66acc7f67d58,8dbe5b57-3d20-4edb-9b93-fa32e23d0283");
+            request.AddHeader("cache-control", "no-cache");
+
+            // act
+            // Execute<T> 執自動進行反序列化
+            var response = client.Execute<Product>(request);
+            // assert
+            //            response.Data. < --自己點點看，強型別才有辦法驗證
+            Assert.AreEqual(expected, response.Data.ProductID);
         }
 
         public void GetProductsByIdTestCase_MyCase()
@@ -59,6 +59,9 @@ namespace WebAPILab1_3.Controllers.Tests
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("undefined", "{\n\t\"ProductID\": 7,\n\t\"ProductName\": \"Bruce\",\n    \"SupplierID\": 5,\n    \"UnitPrice\": 100\n}", ParameterType.RequestBody);
             IRestResponse response = client.Execute(request);
+
+            // assert
+            //            Assert.AreEqual();
         }
     }
 }
